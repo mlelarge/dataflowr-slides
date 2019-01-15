@@ -280,7 +280,7 @@ To do a logistic regression with torch.nn.BCELoss, the last layer of the network
 
  torch.nn.BCEWithLogitsLoss combines a Sigmoid layer and the BCELoss in one single class.
 $$\begin{aligned}
-\text{loss}(i) &= -[y(i)\log \sigma(z(i)) +(1-y(i))\log\sigma(1-z(i))]\\\\
+\text{loss}(i) &= -[y(i)\log \sigma(z(i)) +(1-y(i))\log(1-\sigma(z(i)))]\\\\
 \text{BCEWithLogitsLoss}(z,y) &= \frac{1}{m}\sum\_{i=1}^m \text{loss}(i).
 \end{aligned}
 $$
