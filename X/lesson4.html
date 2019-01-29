@@ -25,7 +25,7 @@ count: false
 
 # (1) Optimization and deep learning
 
-## Gradient descent stochastic gradient descent and mini-batch SGD
+## Gradient descent, stochastic gradient descent and mini-batch SGD
 
 # (2) Gradient descent optimization algorithms
 
@@ -187,7 +187,7 @@ count: false
 
 Why does it work?
 
-With $g\_t = \nabla J(\theta\_t)$, we have:
+With $g\_t = \nabla J(\theta\_t)$, we have for any $k>0$:
 $$
 v\_{t+1} = \gamma^k v\_{t-k} +\eta \underbrace{\sum\_{i=0}^k \gamma^i g\_{t-i}}_{\text{average of last gradients}}
 $$
@@ -218,11 +218,12 @@ s\_{t+1,i} &= s\_{t,i} + \nabla J(\theta\_t)\_i^2\\\\
 \theta\_{t+1,i} &= \theta\_{t,i} - \frac{\eta}{\sqrt{s\_{t+1,i}+\epsilon}}\nabla J(\theta\_t)\_i
 \end{aligned}$$
 
-
 --
 count: false
 
-No manual tuning of the learning rate. Typical default value $0.01$.
+No  manual tuning of the learning rate.
+
+Typical default values: $\eta=0.01$ and $\epsilon = 1e-8$.
 
 .citation[Duchi et al., [Adaptive Subgradient Methods for Online Learning and Stochastic Optimization](http://jmlr.org/papers/v12/duchi11a.html), JMLR 2011]
 
@@ -272,7 +273,7 @@ v\_{t+1} &= \beta\_2 v\_t + (1-\beta\_2) \nabla J(\theta\_t)^2\\\\
 \theta\_{t+1} &= \theta\_{t} - \frac{\eta}{\sqrt{\hat{v}\_{t+1}}+\epsilon} \hat{m}\_{t+1}
 \end{aligned}$$
 
-$\hat{m}\_t$ and $\hat{v}\_t$ are estimates for the first and second momnt of the gradients. Because $m_0=v_0=0$, these estimates are biased towards $0$, the factors $(1-\beta^{t+1})^{-1}$ are here to counteract these biases.
+$\hat{m}\_t$ and $\hat{v}\_t$ are estimates for the first and second moments of the gradients. Because $m_0=v_0=0$, these estimates are biased towards $0$, the factors $(1-\beta^{t+1})^{-1}$ are here to counteract these biases.
 --
 count: false
 
