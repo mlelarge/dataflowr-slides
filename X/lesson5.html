@@ -77,7 +77,7 @@ Today
 
 .center[<img src="images/RNN/rnn_1.png" style="width: 100px;" />]
 
-We can process a sequence of vectors **x** by applying a **recurrence formula** at every time step: 
+We can process a sequence of vectors $x_t$ by applying a **recurrence formula** at every time step: 
 
 $$h\_t = f\_W(h\_{t-1},x\_t)$$
 
@@ -92,11 +92,11 @@ $$h\_t = f\_W(h\_{t-1},x\_t)$$
 
 .center[<img src="images/RNN/rnn_1.png" style="width: 100px;" />]
 
-We can process a sequence of vectors **x** by applying a **recurrence formula** at every time step: 
+We can process a sequence of vectors $x_t$ by applying a **recurrence formula** at every time step: 
 
 $$h\_t = f\_W(h\_{t-1},x\_t)$$
 
-Typically:
+Typically (note the use of the $\mathrm{tanh}$ non-linearity):
 $h\_t = \mathrm{tanh}(W\_{hh}h\_{t-1} + W\_{xh}x\_t)$
 
 Output: $y\_t = W\_{hy}h\_t$ or $y\_t = \mathrm{softmax}(W\_{hy}h\_t)$
