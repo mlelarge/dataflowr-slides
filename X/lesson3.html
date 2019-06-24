@@ -33,7 +33,7 @@ count: false
 `torch.utils.data.Dataset` is an abstract class representing a dataset. Your custom dataset should inherit `Dataset` and override the following methods:
 
   - `__len__` so that `len(dataset)` returns the size of the dataset.
-- `__getitem__` to support the indexing such that `dataset[i]` can be used to get ith sample
+  - `__getitem__` to support the indexing such that `dataset[i]` can be used to get ith sample
 
 --
 count: false
@@ -75,7 +75,7 @@ These are features of the `torchvision.datasets.ImageFolder` Module.
 --
 count: false
 
-More importantly, what returns `dsets['train][0]`?
+More importantly, what returns `dsets['train'][0]`?
 
 --
 count: false
