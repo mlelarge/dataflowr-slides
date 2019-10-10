@@ -108,15 +108,16 @@ for input, label in train_loader:
 
 ## Examples (2)
 
-In the homework, you needed to use the features computed on colab and stored as `numpy` arrays. You first need to load the features and the labels:
+In the first lesson, we first precomputed features and converted them as `numpy` arrays in order to store them. You first need to load the features and the labels:
 ```
 feat_train = load_array(os.path.join(data_dir_colab,'vgg16','feat_train.bc'))
-lbs_train = load_array(os.path.join(data_dir_colab,'vgg16','lbs_train.bc'))
+labels_train = load_array(os.path.join(data_dir_colab,'vgg16','lbs_train.bc'))
 ```
 
 and then, you can create a list for your dataset as follows:
 ```
-train_dataset = [[torch.from_numpy(f).type(dtype),torch.tensor(l.astype(float))] for (f,l) in zip(feat_train,lbs_train)]
+train_dataset =
+[[torch.from_numpy(f).type(torch.float),torch.tensor(l).type(torch.double)] for (f,l) in zip(feat_train,labels_train)]
 ```
 
 A list has a buil-in function `len()` and a `__getitem__()` method, hence this is a valid dataset for PyTorch.
@@ -133,7 +134,7 @@ train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=128, shuffl
 
 ## Examples (3)
 
-Today, we will make our own dataloader from scratch using a Pyhton iterator:
+Today, we will make our own dataloader from scratch using a Python iterator:
 ```
 def minibatch(batch_size, *tensors):
     if len(tensors) == 1:
@@ -156,9 +157,9 @@ for (minibatch_num, (batch_user, batch_item, batch_rating)) in enumerate(minibat
 ```
 where the user and item ids are obtained from `numpy` integers and ratings from `numpy` floats as follows: 
 ```
-user_ids_tensor = gpu(torch.from_numpy(users))
-item_ids_tensor = gpu(torch.from_numpy(items))
-ratings_tensor = gpu(torch.from_numpy(ratings))
+user_ids_tensor = torch.from_numpy(users)
+item_ids_tensor = torch.from_numpy(items)
+ratings_tensor = torch.from_numpy(ratings)
 ```
 
 ---
