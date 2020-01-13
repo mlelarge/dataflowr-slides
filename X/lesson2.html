@@ -152,7 +152,7 @@ for epoch in range(n_epochs):
     loss.backward()
     optimizer.step()
 ```
-code taken from this [notebook](https://github.com/mlelarge/dataflowr/blob/master/Notebooks/02_basics_pytorch.ipynb)
+code taken from this [notebook](https://github.com/mlelarge/dataflowr/blob/master/Notebooks/02_basics_pytorch_colab.ipynb)
 
 --
 count: false
@@ -290,7 +290,8 @@ count: false
 
 This version is more numerically stable.
 
-Note the default $1/m$ factor, where $m$ is typically the size of the batch. This factor will be directly multiplied with the learning rate. If you want to avoid it, you need to set the argument size_average to False in PyTorch 0.4 (reduction = 'sum' in PyTorch 1.0.0).
+Note the default $1/m$ factor, where $m$ is typically the size of the batch. This factor will be directly multiplied with the learning rate. 
+
 
 ---
 
@@ -315,19 +316,6 @@ for epoch in range(n_epochs):
     loss.backward()
     optimizer.step()
 ```
-
---
-count: false
-
-In the [dogs and cats example](https://github.com/mlelarge/dataflowr/blob/master/01_intro_DLDIY_colab.ipynb), we were interested in classification and not logistic regression. Hence we did something else, and used the following modification of the VGG classifier :
-```py
-model_vgg.classifier._modules['6'] = nn.Linear(4096, 2)
-model_vgg.classifier._modules['7'] = torch.nn.LogSoftmax(dim = 1)
-```
-
-so that we get an output of dimension 2 and we then used torch.nn.NLLLoss()
-
-As we will now see, this solution extends nicely to the general classification problem.
 
 ---
 
@@ -395,6 +383,18 @@ $$
 i.e. for prediction, we replace the smooth sigmoid function by the Heaviside step function.
 
 ---
+## Back to dogs and cats!
+
+In the [dogs and cats example](https://github.com/mlelarge/dataflowr/blob/master/01_intro_DLDIY_colab.ipynb), we were interested in classification (and not logistic regression!). Hence we used the following modification of the VGG classifier :
+```py
+model_vgg.classifier._modules['6'] = nn.Linear(4096, 2)
+model_vgg.classifier._modules['7'] = torch.nn.LogSoftmax(dim = 1)
+```
+so that we get an output of dimension 2 and we then used torch.nn.NLLLoss()
+
+As shown above, this approach extends nicley to more than 2 classes.
+
+---
 
 ## Classification in PyTorch
 
@@ -419,11 +419,11 @@ import torch
 
 x = torch.from_numpy(x).type(torch.FloatTensor)
 *x_test = torch.from_numpy(x_test).type(torch.FloatTensor)
-*Z = Z.type_(torch.LongTensor)
-*Z_test = Z_test.type_(torch.LongTensor)
+*Z = torch.from_numpy(Z).float()
+*Z_test = torch.from_numpy(Z_test).float()
 ```]
 .left[
-Note the type of the targets need to be torch.LongTensor and the targets' shape is $[\text{batch size}]$ (as opposed to $[\text{batch size},1]$ previously)
+Note the type of the targets need to be torch.LongTensor and the targets' shape is $[\text{batch size}]$ (as opposed to $[\text{batch size},1]$ with BCEWithLogitsLoss)
 ]]
 .kol-6-12[
 .left[
