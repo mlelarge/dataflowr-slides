@@ -139,7 +139,7 @@ import torch
 
 model = torch.nn.Sequential(torch.nn.Linear(2, 1))
 
-loss_fn = torch.nn.MSELoss(size_average=False)
+loss_fn = torch.nn.MSELoss(reduction='sum')
 
 model.train()
 
@@ -290,7 +290,11 @@ count: false
 
 This version is more numerically stable.
 
-Note the default $1/m$ factor, where $m$ is typically the size of the batch. This factor will be directly multiplied with the learning rate. 
+Note the default $1/m$ factor, where $m$ is typically the size of the batch. This factor will be directly multiplied with the learning rate. Recall the batch gradient descent update:
+$$
+\theta\_j := \theta\_j +\alpha \frac{\partial}{\partial \theta\_j}\text{loss}(\theta).
+$$
+
 
 
 ---
@@ -302,8 +306,8 @@ import torch
 
 model = torch.nn.Sequential(torch.nn.Linear(2, 1))
 
-#loss_fn = torch.nn.MSELoss(size_average=False)
-*loss_fn = torch.nn.BCEWithLogitsLoss(size_average=False)
+#loss_fn = torch.nn.MSELoss(reduction='sum')
+*loss_fn = torch.nn.BCEWithLogitsLoss(reduction='sum')
 
 model.train()
 
