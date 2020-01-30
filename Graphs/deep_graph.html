@@ -327,29 +327,6 @@ $$
 .citation[source [Fast Eigenspace Approximation using Random Signals](https://arxiv.org/abs/1611.00938)]
 
 ---
-# First application with $K=1$
-.center[
-<img src="images/karate_4.png" width="50%" />
-]
-
-For $K=1$, the convolutional layer is simply linear with respect to $L$. The two-layer forward model is (with $\tilde{L}$ a renormalized version of the Laplacian):
-$$
-Z = f(X,A) = \text{softmax}(\tilde{L}\text{ ReLU}(\tilde{L}XW^{0})W^{1}),
-$$
-with $\tilde{L}\_{i,j} = 1/\sqrt{(d\_i+1)(d\_j+1)}$ for $i\sim j$ or $i=j$, and zero otherwise.
-
-.citation[source [Semi-Supervised Classification with Graph Convolutional Networks](https://arxiv.org/abs/1609.02907)]
-
----
-# First application with $K=1$
-.center[
-<img src="images/video.gif" width="50%" />
-]
-
-
-.citation[source [Semi-Supervised Classification with Graph Convolutional Networks](https://arxiv.org/abs/1609.02907)]
-
----
 
 # Convolutional neural networks on graphs
 
@@ -367,6 +344,39 @@ $W\_{i,j} = e^{-\||z\_i-z\_j\||^2/\sigma^2}$,
 where $z\_i$ is the 2D coordinate of pixel $i$.
 
 .center.width-60[![](images/mnist.png)]
+---
+
+# Semi-supervised learning for the karate club
+
+
+.center.width-70[![](images/KIDS-KARATE.jpg)]
+
+
+
+
+---
+# Graph Convolutional Neural Networks
+.center[
+<img src="images/karate_4.png" width="50%" />
+]
+
+A two-layer GCN forward model is (with $\tilde{L}$ a renormalized version of the Laplacian):
+$$
+Z = f(X,A) = \text{softmax}(\tilde{L}\text{ ReLU}(\tilde{L}XW^{0})W^{1}),
+$$
+with $\tilde{L}\_{i,j} = 1/\sqrt{(d\_i+1)(d\_j+1)}$ for $i\sim j$ or $i=j$, and zero otherwise.
+
+.citation[source [Semi-Supervised Classification with Graph Convolutional Networks](https://arxiv.org/abs/1609.02907)]
+
+---
+
+# Graph Convolutional Neural Networks
+.center[
+<img src="images/video.gif" width="50%" />
+]
+
+
+.citation[source [Semi-Supervised Classification with Graph Convolutional Networks](https://arxiv.org/abs/1609.02907)]
 
 
 ---
@@ -592,11 +602,7 @@ net = GCN(34, 5, 2)
 ```
 
 ---
-## Semi-supervised learning for the karate club
 
-.center.width-70[![](images/KIDS-KARATE.jpg)]
-
----
 ## Semi-supervised learning for the karate club
 
 .center.width-20[![](images/karate_net.jpg)]
