@@ -95,7 +95,7 @@ class MLP(nn.Module):
         
     def forward(self,x):
      x = self.fc1(x)
-     x = F.relu(x)
+*    x = F.relu(x)
      x = self.fc2(x)
 *    return F.sigmoid(x)
 ```
@@ -108,7 +108,7 @@ class MLP(nn.Module):
 
 Inheriting from `torch.nn.Module` provides many mechanisms implemented in the superclass.
 
-First, the `(...)` operator is redefined to call the `forward(...)` method and run additional operations.
+First, the `(...)` operator is redefined to call the `forward(...)` method and run additional operations, see [ref](https://discuss.pytorch.org/t/any-different-between-model-input-and-model-forward-input/3690).
 The forward pass should be executed through this operator and not by calling forward explicitly.
 
 ```
